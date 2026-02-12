@@ -1,0 +1,65 @@
+﻿@model IEnumerable<HotelMvc_Project.Data.Models.HotelRoom>
+
+<div class="container my-4">
+    <h3>Hotel Rooms</h3>
+
+    <div class="row g-3">
+        @foreach (var room in Model)
+        {
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Room @room.RoomNumber</h5>
+
+                        <p class="mb-1"><strong>Type:</strong> @room.RoomType</p>
+                        <p class="mb-1"><strong>Capacity:</strong> @room.Capacity</p>
+
+                        <p class="mb-2">
+                            <strong>Status:</strong>
+                            @if (room.IsAvailable)
+                            {
+                                <span class="badge bg-success">Available</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-danger">Not available</span>
+                            }
+                        </p>
+
+                        @if (room.Reservations != null && room.Reservations.Any())
+                        {
+                            <div class="mb-2">
+                                @foreach (var res in room.Reservations)
+                                {
+                                    <a asp-controller="Guest"
+                                       asp-action="Details"
+                                       asp-route-id="@res.Guest.Id"
+                                       class="btn btn-sm btn-outline-primary me-1 mb-1">
+                                        View Guest
+                                    </a>
+                                }
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="text-muted small mb-2">
+                                No guests for this room
+                            </div>
+                        }
+
+
+                        <a asp-controller="HotelRoom"
+                           asp-action="Edit"
+                           asp-route-id="@room.Id"
+                           class="btn btn-sm btn-outline-secondary mb-2">
+                            Edit Room
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
