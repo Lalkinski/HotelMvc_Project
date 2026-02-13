@@ -1,6 +1,21 @@
 ﻿@model HotelMvc_Project.ViewModels.CreateReservationViewModel
 
 <style>
+    /* Match page background to Reservations index (dark gradient behind the card) */
+    body {
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        min-height: 100vh;
+        color: #f8fafc;
+    }
+
+    .card-body{
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+
+    form{
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+
     .reservation-card {
         max-width: 920px;
         margin: 1.5rem auto;
@@ -30,7 +45,7 @@
     }
 
     .reservation-card .form-label {
-        color: #0f172a;
+        color: white;
         font-weight: 600;
     }
 
@@ -63,6 +78,10 @@
 
     .btn-save:hover {
         transform: translateY(-1px);
+    }
+
+    .section-header, .form-label{
+        color: white;
     }
 </style>
 
