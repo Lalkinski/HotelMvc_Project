@@ -15,11 +15,11 @@
 </head>
 <body class="site-body">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm py-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Home" asp-action="Index">
                     <img src="~/images.jpg" alt="HotelMvc logo" class="brand-logo me-2" width="40" height="40"/>
-                    <span class="brand-text">HotelMvc</span>
+                    <span class="brand-text text-white">HotelMvc</span>
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav"
@@ -30,20 +30,20 @@
                 <div class="collapse navbar-collapse" id="mainNav">
                     <ul class="navbar-nav ms-auto align-items-lg-center">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Guest" asp-action="Index">Guests</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="Guest" asp-action="Index">Guests</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="HotelRoom" asp-action="Index">Rooms</a>
+                            <a class="nav-link text-white" asp-area="" asp-controller="HotelRoom" asp-action="Index">Rooms</a>
                         </li>
                     </ul>
 
-                    <div class="ms-3 d-none d-lg-block">
+                    <div class="ms-3 d-none d-lg-block text-white">
                         <partial name="_LoginPartial" />
                     </div>
                 </div>
@@ -73,3 +73,20 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<style>
+    header {
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+
+    /* Ensure collapsed (mobile) nav links are white too */
+    .navbar-dark .navbar-nav .nav-link {
+        color: #fff !important;
+    }
+
+    /* Make login/register links inside the partial white as well */
+    .navbar-dark .navbar-nav .nav-link.btn,
+    .navbar-dark .navbar-nav .nav-link {
+        color: #fff !important;
+    }
+</style>
