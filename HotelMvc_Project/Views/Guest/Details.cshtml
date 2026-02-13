@@ -1,6 +1,17 @@
 ﻿@model HotelMvc_Project.Data.Models.Guest
 
 <style>
+    /* Page background for this view */
+    body {
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+        min-height: 100vh;
+        color: #e6eef8;
+    }
+
+    .card-body{
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+
     .guest-header {
         display: flex;
         align-items: center;
@@ -10,7 +21,7 @@
     }
 
     .guest-card {
-        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+        background: linear-gradient(135deg, rgba(30,41,59,0.6), rgba(15,23,42,0.6));
         border-radius: 12px;
         padding: 1.25rem;
         box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
@@ -48,7 +59,7 @@
 
     .reservation-meta {
         font-size: 0.9rem;
-        color: #0f172a;
+        color: #e6eef8;
         margin-bottom: .75rem;
     }
 
@@ -63,7 +74,7 @@
     }
 
     .muted {
-        color: rgba(15,23,42,0.65);
+        color: rgba(230,238,248,0.7);
         font-size: .9rem;
     }
 
@@ -74,6 +85,21 @@
         margin-top: .75rem;
     }
 
+    .m-0{
+        color: white !important;
+    }
+
+    .mb-3{
+        color: white !important;
+    }
+
+    .d-block{
+        color: white !important;
+    }
+
+    strong{
+        color: white !important;
+    }
 </style>
 
 <div class="container my-4">
