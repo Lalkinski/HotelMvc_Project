@@ -1,4 +1,5 @@
 ﻿using HotelMvc_Project.Data;
+using HotelMvc_Project.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -70,6 +71,30 @@ namespace HotelMvc_ASP.Net.Controllers
                 .ToListAsync();
 
             return View(rooms);
+        }
+
+        public async Task<IActionResult> Details(int id)
+        {
+            var room = await _context.Rooms
+                .AsNoTracking()
+                .FirstOrDefaultAsync(r => r.Id == id);
+
+            if (room == null) return NotFound();
+
+            var reservations = await _context.Reservations
+                .Include(r => r.Guest)
+                .AsNoTracking()
+                .Where(r => r.HotelRoomId == id)
+                .OrderByDescending(r => r.CheckIn)  
+                .ToListAsync();
+
+            var vm = new RoomDetailsViewModel
+            {
+                Room = room,
+                Reservations = reservations
+            };
+
+            return View(vm);
         }
 
     }

@@ -1,0 +1,132 @@
+﻿@using HotelMvc_Project.ViewModels
+@model RoomDetailsViewModel
+
+<style>
+  /* View-local styles — match other pages (dark gradient + glass cards) */
+  body {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    min-height: 100vh;
+    color: #e6eef8;
+  }
+
+    .card-body {
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+
+  .room-container {
+    max-width: 980px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .room-header {
+    margin-bottom: 1rem;
+  }
+
+  .room-header h2 {
+    color: #f8fafc;
+    margin: 0 0 .25rem 0;
+  }
+
+  /* Glass card look consistent with other views */
+  .room-container .card {
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(30,41,59,0.85);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 12px 36px rgba(2,6,23,0.6);
+    color: #e6eef8;
+    transition: transform .14s ease, box-shadow .18s ease;
+  }
+
+  .room-container .card + .card { margin-top: 1rem; }
+
+  .room-container .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 48px rgba(2,6,23,0.7);
+  }
+
+  .room-meta {
+    color: rgba(230,238,248,0.78);
+    margin-top: .5rem;
+  }
+
+  .muted {
+    color: rgba(230,238,248,0.72);
+  }
+
+  .badge-available {
+    display: inline-block;
+    padding: .35rem .6rem;
+    border-radius: .6rem;
+    font-weight: 700;
+    background: linear-gradient(90deg,#06b6d4,#4f46e5);
+    color: #041024;
+  }
+
+  .btn-back {
+    margin-top: 1rem;
+  }
+
+  /* small list spacing */
+  .room-container ul { padding-left: 1.15rem; margin: .25rem 0 0 0; }
+  .room-container li { margin-bottom: .35rem; color: #e6eef8; }
+
+</style>
+
+<div class="room-container">
+    <div class="room-header">
+        <h2>Room @Model.Room.RoomNumber</h2>
+        <div class="room-meta">
+            <strong>Type:</strong> @Model.Room.RoomType &nbsp; · &nbsp;
+            <strong>Capacity:</strong> @Model.Room.Capacity
+        </div>
+    </div>
+
+    <div class="card p-3 mb-3">
+        <h5 class="mb-2">Guest (latest reservation)</h5>
+
+        @if (!Model.Reservations.Any())
+        {
+            <div class="muted">No reservations for this room.</div>
+        }
+        else
+        {
+            var last = Model.Reservations.First();
+            <div>
+                <strong>@last.Guest.FirstName @last.Guest.LastName</strong>
+                <div class="muted">@last.Guest.Email</div>
+                <div class="muted">Guests count: @last.GuestsCount</div>
+            </div>
+        }
+    </div>
+
+    @if (Model.Reservations.Any())
+    {
+        <div class="card p-3 mb-3">
+            <h5 class="mb-2">All reservations for this room</h5>
+            <ul class="mb-0">
+                @foreach (var r in Model.Reservations)
+                {
+                    <li>
+                        <strong>@r.Guest.FirstName @r.Guest.LastName</strong>
+                        <div class="muted small">Check-in: @r.CheckIn.ToString("yyyy-MM-dd") · Check-out: @r.CheckOut.ToString("yyyy-MM-dd")</div>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+
+    <div class="d-flex gap-2 align-items-center btn-back">
+        <a asp-action="Index" class="btn btn-outline-light">Back</a>
+        @if (Model.Room.IsAvailable)
+        {
+            <div class="ms-auto"><span class="badge-available">Available</span></div>
+        }
+        else
+        {
+            <div class="ms-auto"><span class="badge-available" style="background: linear-gradient(90deg,#ef4444,#b91c1c); color:#fff;">Not available</span></div>
+        }
+    </div>
+</div>
