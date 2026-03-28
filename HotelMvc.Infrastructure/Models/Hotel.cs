@@ -23,5 +23,9 @@ namespace HotelMvc.Infrastructure.Models
         public string? ImageUrl { get; set; }
 
         public ICollection<Room> Rooms { get; set; } = new List<Room>();
+
+        public ICollection<HotelAmenity> HotelsAmenities { get; set; } = new List<HotelAmenity>();
+
+
     }
 }
