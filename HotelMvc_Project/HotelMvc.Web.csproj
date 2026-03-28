@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HotelMvc.Core\HotelMvc.Core.csproj" />
+    <ProjectReference Include="..\HotelMvc.Infrastructure\HotelMvc.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>

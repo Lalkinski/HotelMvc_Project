@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="HotelMvc_Project/HotelMvc_Project.csproj" />
+  <Project Path="HotelMvc.Core/HotelMvc.Core.csproj" Id="627e05e4-db2e-4793-92d7-cb0b69dcc37a" />
+  <Project Path="HotelMvc.Infrastructure/HotelMvc.Infrastructure.csproj" Id="8ca5c29e-4550-43c5-b43d-c94f3cfe868b" />
+  <Project Path="HotelMvc.Tests/HotelMvc.Tests.csproj" Id="89b9e063-305e-443c-bde7-7b283a256b90" />
+  <Project Path="HotelMvc_Project/HotelMvc.Web.csproj" />
 </Solution>
