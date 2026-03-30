@@ -26,6 +26,14 @@ namespace HotelMvc.Infrastructure.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<Room>()
+                .Property(r => r.PricePerNight)
+                .HasPrecision(18, 2);
+
+            builder.Entity<Reservation>()
+                .Property(r => r.TotalPrice)
+                .HasPrecision(18, 2);
+
             builder.Entity<HotelAmenity>()
                 .HasKey(ha => new { ha.HotelId, ha.AmenityId });
 
