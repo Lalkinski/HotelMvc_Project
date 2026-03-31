@@ -1,0 +1,38 @@
+﻿@using HotelMvc.Core.Models.Hotel
+@model IEnumerable<HotelListItemServiceModel>
+
+@{
+    ViewData["Title"] = "Hotels";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Hotels</h2>
+
+    @if (!Model.Any())
+    {
+        <p>No hotels available.</p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var hotel in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        @if (!string.IsNullOrWhiteSpace(hotel.ImageUrl))
+                        {
+                            <img src="@hotel.ImageUrl" class="card-img-top" alt="@hotel.Name" style="height: 220px; object-fit: cover;" />
+                        }
+
+                        <div class="card-body">
+                            <h5 class="card-title">@hotel.Name</h5>
+                            <p class="card-text">
+                                <strong>Location:</strong> @hotel.Location
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
