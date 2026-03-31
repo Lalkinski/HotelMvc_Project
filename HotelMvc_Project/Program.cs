@@ -3,6 +3,8 @@ using HotelMvc.Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using HotelMvc.Infrastructure.Data.Seed;
+using HotelMvc.Core.Contracts;
+using HotelMvc.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +30,8 @@ builder.Services
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IHotelService, HotelService>();
 
 var app = builder.Build();
 
