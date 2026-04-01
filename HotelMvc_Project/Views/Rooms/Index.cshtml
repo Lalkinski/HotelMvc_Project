@@ -1,0 +1,50 @@
+﻿@using HotelMvc.Core.Models.Room
+@model IEnumerable<RoomListItemServiceModel>
+
+@{
+    ViewData["Title"] = "Rooms";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Rooms</h2>
+
+    @if (!Model.Any())
+    {
+        <p>No rooms available.</p>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var room in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@room.HotelName</h5>
+                            <p class="card-text">
+                                <strong>Room Type:</strong> @room.RoomType
+                            </p>
+                            <p class="card-text">
+                                <strong>Capacity:</strong> @room.Capacity
+                            </p>
+                            <p class="card-text">
+                                <strong>Price per Night:</strong> @room.PricePerNight.ToString("F2") BGN
+                            </p>
+                            <p class="card-text">
+                                <strong>Status:</strong>
+                                @if (room.IsAvailable)
+                                {
+                                    <span class="text-success">Available</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">Not Available</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
