@@ -5,4 +5,6 @@ namespace HotelMvc.Core.Contracts;
 public interface IHotelService
 {
     Task<IEnumerable<HotelListItemServiceModel>> GetAllAsync();
+
+    Task<HotelDetailsServiceModel?> GetByIdAsync(int id);
 }

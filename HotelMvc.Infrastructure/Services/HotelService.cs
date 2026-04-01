@@ -27,4 +27,20 @@ public class HotelService : IHotelService
             })
             .ToListAsync();
     }
+
+    public async Task<HotelDetailsServiceModel?> GetByIdAsync(int id)
+    {
+        return await context.Hotels
+            .AsNoTracking()
+            .Where(h => h.Id == id)
+            .Select(h => new HotelDetailsServiceModel
+            {
+                Id = h.Id,
+                Name = h.Name,
+                Location = h.Location,
+                Description = h.Description,
+                ImageUrl = h.ImageUrl
+            })
+            .FirstOrDefaultAsync();
+    }
 }

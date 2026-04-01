@@ -1,0 +1,32 @@
+﻿@using HotelMvc.Core.Models.Hotel
+@model HotelDetailsServiceModel
+
+@{
+    ViewData["Title"] = "Hotel Details";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+        {
+            <img src="@Model.ImageUrl" class="card-img-top" alt="@Model.Name" style="height: 350px; object-fit: cover;" />
+        }
+
+        <div class="card-body">
+            <h2 class="card-title">@Model.Name</h2>
+
+            <p class="card-text">
+                <strong>Location:</strong> @Model.Location
+            </p>
+
+            <p class="card-text">
+                <strong>Description:</strong>
+                @(string.IsNullOrWhiteSpace(Model.Description) ? "No description available." : Model.Description)
+            </p>
+
+            <a asp-controller="Hotels" asp-action="Index" class="btn btn-secondary">
+                Back to Hotels
+            </a>
+        </div>
+    </div>
+</div>

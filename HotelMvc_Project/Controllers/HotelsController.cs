@@ -19,4 +19,17 @@ public class HotelsController : Controller
 
         return View(hotels);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        var hotel = await hotelService.GetByIdAsync(id);
+
+        if (hotel == null)
+        {
+            return NotFound();
+        }
+
+        return View(hotel);
+    }
 }

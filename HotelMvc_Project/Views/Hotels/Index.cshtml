@@ -29,6 +29,13 @@
                             <p class="card-text">
                                 <strong>Location:</strong> @hotel.Location
                             </p>
+
+                            <a asp-controller="Hotels"
+                                   asp-action="Details"
+                                   asp-route-id="@hotel.Id"
+                                   class="btn btn-primary mt-2">
+                                View Details
+                            </a>
                         </div>
                     </div>
                 </div>
