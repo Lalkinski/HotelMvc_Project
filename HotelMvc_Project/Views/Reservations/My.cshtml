@@ -1,0 +1,68 @@
+﻿@using HotelMvc.Core.Models.Reservation
+@model IEnumerable<ReservationListItemServiceModel>
+
+@{
+    ViewData["Title"] = "My Reservations";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">My Reservations (@Model.Count())</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            You do not have any reservations yet.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var reservation in Model)
+            {
+                <div class="col-md-6 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@reservation.HotelName</h5>
+
+                            <p class="card-text">
+                                <strong>Room Type:</strong> @reservation.RoomType
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Check-in:</strong> @reservation.CheckInDate.ToString("dd.MM.yyyy")
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Check-out:</strong> @reservation.CheckOutDate.ToString("dd.MM.yyyy")
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Guests:</strong> @reservation.GuestsCount
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Total Price:</strong> @reservation.TotalPrice.ToString("F2") BGN
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Status:</strong>
+                                @if (reservation.Status == "Confirmed")
+                                {
+                                    <span class="badge bg-success">@reservation.Status</span>
+                                }
+                                else if (reservation.Status == "Pending")
+                                {
+                                    <span class="badge bg-warning text-dark">@reservation.Status</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">@reservation.Status</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>

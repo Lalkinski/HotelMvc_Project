@@ -64,4 +64,28 @@ public class ReservationService : IReservationService
 
         return true;
     }
+
+    public async Task<IEnumerable<ReservationListItemServiceModel>> GetUserReservationsAsync(string userId)
+    {
+        return await context.Reservations
+            .AsNoTracking()
+            .Where(r => r.UserId == userId)
+            .Include(r => r.Room)
+                .ThenInclude(room => room.Hotel)
+            .Include(r => r.Room)
+                .ThenInclude(room => room.RoomType)
+            .OrderByDescending(r => r.CheckInDate)
+            .Select(r => new ReservationListItemServiceModel
+            {
+                Id = r.Id,
+                HotelName = r.Room.Hotel.Name,
+                RoomType = r.Room.RoomType.Name,
+                CheckInDate = r.CheckInDate,
+                CheckOutDate = r.CheckOutDate,
+                GuestsCount = r.GuestsCount,
+                TotalPrice = r.TotalPrice,
+                Status = r.Status
+            })
+            .ToListAsync();
+    }
 }

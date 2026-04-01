@@ -54,10 +54,26 @@ public class ReservationsController : Controller
 
         if (!isCreated)
         {
-            ModelState.AddModelError(string.Empty, "Unable to create reservation. Please check the dates and room capacity.");
+            ModelState.AddModelError(string.Empty, "Reservation was not created. Check the dates, guests count, and room availability.");
             return View(model);
         }
 
-        return RedirectToAction("Index", "Rooms");
+        //return RedirectToAction("Index", "Rooms");
+        return RedirectToAction(nameof(My));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> My()
+    {
+        var user = await userManager.GetUserAsync(User);
+
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+
+        var reservations = await reservationService.GetUserReservationsAsync(user.Id);
+
+        return View(reservations);
     }
 }
