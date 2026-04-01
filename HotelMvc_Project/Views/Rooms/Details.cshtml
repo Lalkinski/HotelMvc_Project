@@ -41,6 +41,12 @@
             <a asp-controller="Rooms" asp-action="Index" class="btn btn-secondary">
                 Back to Rooms
             </a>
+            <a asp-controller="Reservations"
+                   asp-action="Create"
+                   asp-route-roomId="@Model.Id"
+                   class="btn btn-primary ms-2">
+                Reserve this Room
+            </a>
         </div>
     </div>
 </div>
