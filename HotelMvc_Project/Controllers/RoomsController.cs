@@ -19,4 +19,17 @@ public class RoomsController : Controller
 
         return View(rooms);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        var room = await roomService.GetByIdAsync(id);
+
+        if (room == null)
+        {
+            return NotFound();
+        }
+
+        return View(room);
+    }
 }

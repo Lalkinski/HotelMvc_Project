@@ -1,0 +1,46 @@
+﻿@using HotelMvc.Core.Models.Room
+@model RoomDetailsServiceModel
+
+@{
+    ViewData["Title"] = "Room Details";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title">Room Details</h2>
+
+            <p class="card-text">
+                <strong>Hotel:</strong> @Model.HotelName
+            </p>
+
+            <p class="card-text">
+                <strong>Room Type:</strong> @Model.RoomType
+            </p>
+
+            <p class="card-text">
+                <strong>Capacity:</strong> @Model.Capacity
+            </p>
+
+            <p class="card-text">
+                <strong>Price Per Night:</strong> @Model.PricePerNight.ToString("F2") BGN
+            </p>
+
+            <p class="card-text">
+                <strong>Status:</strong>
+                @if (Model.IsAvailable)
+                {
+                    <span class="text-success">Available</span>
+                }
+                else
+                {
+                    <span class="text-danger">Not Available</span>
+                }
+            </p>
+
+            <a asp-controller="Rooms" asp-action="Index" class="btn btn-secondary">
+                Back to Rooms
+            </a>
+        </div>
+    </div>
+</div>

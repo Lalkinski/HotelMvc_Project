@@ -31,4 +31,21 @@ public class RoomService : IRoomService
             })
             .ToListAsync();
     }
+
+    public async Task<RoomDetailsServiceModel?> GetByIdAsync(int id)
+    {
+        return await context.Rooms
+            .AsNoTracking()
+            .Where(r => r.Id == id)
+            .Select(r => new RoomDetailsServiceModel
+            {
+                Id = r.Id,
+                HotelName = r.Hotel.Name,
+                RoomType = r.RoomType.Name,
+                Capacity = r.Capacity,
+                PricePerNight = r.PricePerNight,
+                IsAvailable = r.IsAvailable
+            })
+            .FirstOrDefaultAsync();
+    }
 }
