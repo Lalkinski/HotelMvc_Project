@@ -88,4 +88,27 @@ public class ReservationService : IReservationService
             })
             .ToListAsync();
     }
+
+    public async Task<ReservationDetailsServiceModel?> GetReservationDetailsAsync(int reservationId, string userId)
+    {
+        return await context.Reservations
+            .AsNoTracking()
+            .Where(r => r.Id == reservationId && r.UserId == userId)
+            .Include(r => r.Room)
+                .ThenInclude(room => room.Hotel)
+            .Include(r => r.Room)
+                .ThenInclude(room => room.RoomType)
+            .Select(r => new ReservationDetailsServiceModel
+            {
+                Id = r.Id,
+                HotelName = r.Room.Hotel.Name,
+                RoomType = r.Room.RoomType.Name,
+                CheckInDate = r.CheckInDate,
+                CheckOutDate = r.CheckOutDate,
+                GuestsCount = r.GuestsCount,
+                TotalPrice = r.TotalPrice,
+                Status = r.Status
+            })
+            .FirstOrDefaultAsync();
+    }
 }

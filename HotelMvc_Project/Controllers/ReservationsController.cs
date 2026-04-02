@@ -76,4 +76,24 @@ public class ReservationsController : Controller
 
         return View(reservations);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Details(int id)
+    {
+        var user = await userManager.GetUserAsync(User);
+
+        if (user == null)
+        {
+            return Unauthorized();
+        }
+
+        var reservation = await reservationService.GetReservationDetailsAsync(id, user.Id);
+
+        if (reservation == null)
+        {
+            return NotFound();
+        }
+
+        return View(reservation);
+    }
 }

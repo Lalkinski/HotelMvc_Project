@@ -59,6 +59,14 @@
                                     <span class="badge bg-secondary">@reservation.Status</span>
                                 }
                             </p>
+
+
+                            <a asp-controller="Reservations"
+                                   asp-action="Details"
+                                   asp-route-id="@reservation.Id"
+                                   class="btn btn-primary mt-2">
+                                View Details
+                            </a>
                         </div>
                     </div>
                 </div>
