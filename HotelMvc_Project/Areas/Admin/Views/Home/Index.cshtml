@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title mb-3">Admin Dashboard</h2>
+            <p class="card-text">
+                Welcome to the administration area.
+            </p>
+
+            <div class="list-group mt-3">
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action">
+                    Dashboard
+                </a>
+                <a asp-area="" asp-controller="Hotels" asp-action="Index" class="list-group-item list-group-item-action">
+                    View Public Hotels
+                </a>
+                <a asp-area="" asp-controller="Rooms" asp-action="Index" class="list-group-item list-group-item-action">
+                    View Public Rooms
+                </a>
+                <a asp-area="" asp-controller="Reservations" asp-action="My" class="list-group-item list-group-item-action">
+                    My Reservations
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

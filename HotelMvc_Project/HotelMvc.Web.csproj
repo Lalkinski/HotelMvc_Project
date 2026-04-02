@@ -20,8 +20,4 @@
     <ProjectReference Include="..\HotelMvc.Infrastructure\HotelMvc.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\" />
-  </ItemGroup>
-
 </Project>
