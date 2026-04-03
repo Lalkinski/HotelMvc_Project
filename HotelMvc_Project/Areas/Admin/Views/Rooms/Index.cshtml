@@ -1,0 +1,57 @@
+﻿@using HotelMvc.Core.Models.Room
+@model IEnumerable<RoomListItemServiceModel>
+
+@{
+    ViewData["Title"] = "Manage Rooms";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Manage Rooms</h2>
+
+        <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No rooms found.
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            @foreach (var room in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">@room.HotelName</h5>
+
+                            <p><strong>Room Type:</strong> @room.RoomType</p>
+                            <p><strong>Capacity:</strong> @room.Capacity</p>
+                            <p><strong>Price:</strong> @room.PricePerNight.ToString("F2") BGN</p>
+
+                            <p>
+                                <strong>Status:</strong>
+                                @if (room.IsAvailable)
+                                {
+                                    <span class="badge bg-success">Available</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">Not Available</span>
+                                }
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
