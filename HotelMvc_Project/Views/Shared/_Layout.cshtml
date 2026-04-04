@@ -44,15 +44,6 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Reservation" asp-action="Index">Reservations</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="Guest" asp-action="Index">Guests</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" asp-area="" asp-controller="HotelRoom" asp-action="Index">Rooms</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Hotels" asp-action="Index">Hotels</a>
                         </li>
                         <li class="nav-item">
@@ -99,14 +90,12 @@
         background: linear-gradient(135deg, #1e293b, #0f172a);
     }
 
-    /* Ensure collapsed (mobile) nav links are white too */
     .navbar-dark .navbar-nav .nav-link {
         color: #fff !important;
     }
 
-    /* Make login/register links inside the partial white as well */
-    .navbar-dark .navbar-nav .nav-link.btn,
-    .navbar-dark .navbar-nav .nav-link {
-        color: #fff !important;
-    }
+        .navbar-dark .navbar-nav .nav-link.btn,
+        .navbar-dark .navbar-nav .nav-link {
+            color: #fff !important;
+        }
 </style>

@@ -1,0 +1,78 @@
+﻿@using HotelMvc.Core.Models.Admin
+@model IEnumerable<AdminReservationListItemServiceModel>
+
+@{
+    ViewData["Title"] = "Manage Reservations";
+}
+
+
+
+<div class="container mt-4 admin-reservations-page">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Manage Reservations</h2>
+
+        <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No reservations found.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-white table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Hotel</th>
+                        <th>Room Type</th>
+                        <th>Check-in</th>
+                        <th>Check-out</th>
+                        <th>Guests</th>
+                        <th>Total Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var reservation in Model)
+                    {
+                        <tr>
+                            <td>@reservation.UserEmail</td>
+                            <td>@reservation.HotelName</td>
+                            <td>@reservation.RoomType</td>
+                            <td>@reservation.CheckInDate.ToString("dd.MM.yyyy")</td>
+                            <td>@reservation.CheckOutDate.ToString("dd.MM.yyyy")</td>
+                            <td>@reservation.GuestsCount</td>
+                            <td>@reservation.TotalPrice.ToString("F2") BGN</td>
+                            <td>
+                                <span class="badge bg-info text-dark">@reservation.Status</span>
+                            </td>
+                            <td>
+                                <form asp-area="Admin"
+                                      asp-controller="Reservations"
+                                      asp-action="Delete"
+                                      asp-route-id="@reservation.Id"
+                                      method="post"
+                                      onsubmit="return confirm('Are you sure you want to delete this reservation?');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-danger">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
