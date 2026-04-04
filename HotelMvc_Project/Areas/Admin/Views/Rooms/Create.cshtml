@@ -1,0 +1,66 @@
+﻿@using HotelMvc.Core.Models.Admin
+@model AdminRoomFormModel
+
+@{
+    ViewData["Title"] = "Create Room";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white">Create Room</h2>
+
+        <a asp-area="Admin"
+               asp-controller="Rooms"
+               asp-action="Index"
+               class="btn btn-secondary">
+            Back to Rooms
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <form asp-area="Admin" asp-controller="Rooms" asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="HotelId" class="form-label"></label>
+                    <select asp-for="HotelId" asp-items="Model.Hotels" class="form-select">
+                        <option value="">Select hotel</option>
+                    </select>
+                    <span asp-validation-for="HotelId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="RoomTypeId" class="form-label"></label>
+                    <select asp-for="RoomTypeId" asp-items="Model.RoomTypes" class="form-select">
+                        <option value="">Select room type</option>
+                    </select>
+                    <span asp-validation-for="RoomTypeId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Capacity" class="form-label"></label>
+                    <input asp-for="Capacity" class="form-control" />
+                    <span asp-validation-for="Capacity" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="PricePerNight" class="form-label"></label>
+                    <input asp-for="PricePerNight" class="form-control" />
+                    <span asp-validation-for="PricePerNight" class="text-danger"></span>
+                </div>
+
+                <div class="form-check mb-3">
+                    <input asp-for="IsAvailable" class="form-check-input" />
+                    <label asp-for="IsAvailable" class="form-check-label"></label>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Room</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
