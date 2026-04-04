@@ -5,6 +5,27 @@
     ViewData["Title"] = "Manage Hotels";
 }
 
+<div class="page-header">
+    <h2>Manage Hotels</h2>
+
+    <div class="d-flex gap-2">
+        <a asp-area="Admin"
+               asp-controller="Hotels"
+               asp-action="Create"
+               class="btn btn-primary">
+            Create Hotel
+        </a>
+
+        <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+    </div>
+</div>
+
+
 <div class="container mt-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Manage Hotels</h2>

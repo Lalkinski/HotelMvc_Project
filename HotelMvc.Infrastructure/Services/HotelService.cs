@@ -1,6 +1,8 @@
 ﻿using HotelMvc.Core.Contracts;
+using HotelMvc.Core.Models.Admin;
 using HotelMvc.Core.Models.Hotel;
 using HotelMvc.Infrastructure.Data;
+using HotelMvc.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelMvc.Infrastructure.Services;
@@ -42,5 +44,19 @@ public class HotelService : IHotelService
                 ImageUrl = h.ImageUrl
             })
             .FirstOrDefaultAsync();
+    }
+
+    public async Task CreateAsync(AdminHotelFormModel model)
+    {
+        var hotel = new Hotel
+        {
+            Name = model.Name,
+            Location = model.Location,
+            Description = model.Description,
+            ImageUrl = model.ImageUrl
+        };
+
+        await context.Hotels.AddAsync(hotel);
+        await context.SaveChangesAsync();
     }
 }
