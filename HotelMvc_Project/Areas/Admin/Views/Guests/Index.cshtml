@@ -1,0 +1,52 @@
+﻿@using HotelMvc.Core.Models.Admin
+@model IEnumerable<AdminGuestListItemServiceModel>
+
+@{
+    ViewData["Title"] = "Guests";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white">Guests</h2>
+
+        <a asp-area="Admin"
+               asp-controller="Home"
+               asp-action="Index"
+               class="btn btn-secondary">
+            Back to Dashboard
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            No guests with reservations found.
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-dark table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Reservations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var guest in Model)
+                    {
+                        <tr>
+                            <td>@guest.Email</td>
+                            <td>@(string.IsNullOrWhiteSpace(guest.PhoneNumber) ? "No phone number" : guest.PhoneNumber)</td>
+                            <td>
+                                <span class="badge bg-info text-dark">@guest.ReservationsCount</span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
