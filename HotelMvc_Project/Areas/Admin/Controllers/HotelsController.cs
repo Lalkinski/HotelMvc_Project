@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using HotelMvc.Core.Models.Admin;
-
 namespace HotelMvc.Web.Areas.Admin.Controllers;
 
 
@@ -22,25 +21,5 @@ public class HotelsController : Controller
     {
         var hotels = await hotelService.GetAllAsync();
         return View(hotels);
-    }
-
-    [HttpGet]
-    public IActionResult Create()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(AdminHotelFormModel model)
-    {
-        if (!ModelState.IsValid)
-        {
-            return View(model);
-        }
-
-        await hotelService.CreateAsync(model);
-
-        return RedirectToAction(nameof(Index));
     }
 }

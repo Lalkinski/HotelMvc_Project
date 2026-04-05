@@ -16,10 +16,18 @@ public class HotelService : IHotelService
         this.context = context;
     }
 
-    public async Task<IEnumerable<HotelListItemServiceModel>> GetAllAsync()
+    public async Task<IEnumerable<HotelListItemServiceModel>> GetAllAsync(string? searchTerm = null)
     {
-        return await context.Hotels
-            .AsNoTracking()
+        IQueryable<Hotel> query = context.Hotels.AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            query = query.Where(h =>
+                h.Name.Contains(searchTerm) ||
+                h.Location.Contains(searchTerm));
+        }
+
+        return await query
             .Select(h => new HotelListItemServiceModel
             {
                 Id = h.Id,

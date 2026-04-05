@@ -13,9 +13,10 @@ public class HotelsController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string? searchTerm)
     {
-        var hotels = await hotelService.GetAllAsync();
+        var hotels = await hotelService.GetAllAsync(searchTerm);
+        ViewBag.SearchTerm = searchTerm;
 
         return View(hotels);
     }
